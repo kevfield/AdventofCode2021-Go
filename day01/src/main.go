@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -55,17 +56,15 @@ func inputFlags() (string, string) {
 func higherorLower(input []string) int {
 
 	var higherFound int
-	// run loop with -2 to catch edge case and avoid out of range
-	for i := 0; i < len(input)-2; i++ {
-		if input[i+1] > input[i] {
+	var valOne int
+	var valTwo int
+
+	for i := 0; i < len(input)-1; i++ {
+		valOne, _ = strconv.Atoi(input[i+1])
+		valTwo, _ = strconv.Atoi(input[i])
+		if valOne > valTwo {
 			higherFound++
 		}
-	}
-
-	// edge case
-	sliceLength := len(input)
-	if input[sliceLength-1] > input[sliceLength-2] {
-		higherFound++
 	}
 
 	return higherFound
