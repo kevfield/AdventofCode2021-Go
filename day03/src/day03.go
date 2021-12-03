@@ -72,7 +72,7 @@ func lifeSupport(lsInput []string, lsoneMap map[int]int, lszeroMap map[int]int) 
 					if lsInput[j][0] == '1' {
 						oxygentempSlice = append(oxygentempSlice, lsInput[j])
 					}
-				} else {
+				} else if lszeroMap[j] >= lsoneMap[j] {
 					if lsInput[j][0] == '0' {
 						oxygentempSlice = append(oxygentempSlice, lsInput[j])
 					}
@@ -92,12 +92,12 @@ func lifeSupport(lsInput []string, lsoneMap map[int]int, lszeroMap map[int]int) 
 			// loop through same rune on each line of input
 			for j := 0; j < len(lsInput); j++ {
 				// check map for most common
-				if lszeroMap[j] >= lsoneMap[j] {
-					if lsInput[j][0] == '0' {
+				if lsoneMap[j] <= lszeroMap[j] {
+					if lsInput[j][0] == '1' {
 						co2tempSlice = append(co2tempSlice, lsInput[j])
 					}
-				} else {
-					if lsInput[j][0] == '1' {
+				} else if lszeroMap[j] <= lsoneMap[j] {
+					if lsInput[j][0] == '0' {
 						co2tempSlice = append(co2tempSlice, lsInput[j])
 					}
 				}
